@@ -39,10 +39,10 @@ async function getCurrentImageOfTheDay() {
       new Date().toLocaleDateString("en-CA", {
         timeZone: "Asia/Kolkata",
       });
-    const res = await fetch(
+    const response = await fetch(
       `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${apikey}`
     );
-    const data = await res.json();
+    const data = await response.json();
     return data;
   }
   
@@ -61,8 +61,8 @@ async function getCurrentImageOfTheDay() {
   }
   
   const form = document.getElementById("search-form");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    getImageOfTheDay(e.target["search-input"].value);
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    getImageOfTheDay(event.target["search-input"].value);
   });
   document.body.onload = getCurrentImageOfTheDay();
